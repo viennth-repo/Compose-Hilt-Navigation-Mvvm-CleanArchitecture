@@ -1,4 +1,4 @@
-package com.viennth.app.demo.ui.theme
+package com.viennth.app.demo.presentation.view.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
