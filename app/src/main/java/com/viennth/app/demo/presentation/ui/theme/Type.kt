@@ -1,4 +1,4 @@
-package com.viennth.app.demo.presentation.view.ui.theme
+package com.viennth.app.demo.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
