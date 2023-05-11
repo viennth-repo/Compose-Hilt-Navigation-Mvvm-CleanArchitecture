@@ -14,9 +14,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Named
 
 @HiltViewModel
 class SampleViewModel @Inject constructor(
+    @Named("V2")
     private val sampleUseCase: SampleUseCase
 ): BaseViewModel() {
     private val _samples: MutableState<List<Sample>> = mutableStateOf(emptyList())

@@ -4,15 +4,14 @@ import com.viennth.app.demo.domain.abstraction.ISampleRepository
 import com.viennth.app.demo.domain.model.Resource
 import com.viennth.app.demo.domain.model.Sample
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import javax.inject.Inject
 
-class SampleUseCaseImpl @Inject constructor(
+class SampleUseCaseV2Impl @Inject constructor(
     private val sampleRepository: ISampleRepository
 ): SampleUseCase {
     override suspend fun getSamples(): Flow<Resource<List<Sample>>> {
-        Timber.d("=>> SampleUseCaseImpl getSamples")
+        Timber.d("=>> SampleUseCaseV2Impl getSamples")
         return sampleRepository.getSamples()
     }
 }
