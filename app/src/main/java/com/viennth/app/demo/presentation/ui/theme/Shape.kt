@@ -1,4 +1,4 @@
-package com.viennth.app.demo.ui.theme
+package com.viennth.app.demo.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
