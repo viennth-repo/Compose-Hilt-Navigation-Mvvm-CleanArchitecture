@@ -6,7 +6,7 @@ import com.viennth.app.demo.domain.model.Resource
 import com.viennth.app.demo.domain.model.ResourceError
 import retrofit2.HttpException
 import timber.log.Timber
-import java.io.IOException
+import java.net.ConnectException
 
 abstract class BaseService {
 
@@ -17,6 +17,7 @@ abstract class BaseService {
                 Resource.Error(
                     ResourceError(
                         type = ErrorType.API,
+                        errorCode = response.errorCode,
                         errorMessage = response.errorMessage ?: "Something went wrong "
                     )
                 )
@@ -24,23 +25,26 @@ abstract class BaseService {
                 Resource.Success(response.data)
             }
         } catch (throwable: Throwable) {
-            Timber.d("Error: ${throwable.message}")
+            Timber.d("Error: $throwable")
             when (throwable) {
                 is HttpException -> Resource.Error(
                     ResourceError(
                         type = ErrorType.GENERIC,
+                        errorCode = throwable.code(),
                         errorMessage = "Something went wrong"
                     )
                 )
-                is IOException -> Resource.Error(
+                is ConnectException -> Resource.Error(
                     ResourceError(
                         type = ErrorType.GENERIC,
+                        errorCode = 404,
                         errorMessage = "Please check your network connection"
                     )
                 )
                 else -> Resource.Error(
                     ResourceError(
                         type = ErrorType.GENERIC,
+                        errorCode = -1,
                         errorMessage = "Something went wrong"
                     )
                 )
@@ -51,5 +55,6 @@ abstract class BaseService {
 
 data class ApiResponse<T>(
     @SerializedName("data") val data: T? = null,
-    @SerializedName("errorMessage") val errorMessage: String? = null
+    @SerializedName("errorMessage") val errorMessage: String? = null,
+    @SerializedName("errorCode") val errorCode: Int? = null
 )

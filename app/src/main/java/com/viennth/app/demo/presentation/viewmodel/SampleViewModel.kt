@@ -12,32 +12,27 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
 class SampleViewModel @Inject constructor(
-    @Named("V2")
+    @Named("V1")
     private val sampleUseCase: SampleUseCase
 ): BaseViewModel() {
     private val _samples: MutableState<List<Sample>> = mutableStateOf(emptyList())
     val sample: State<List<Sample>> = _samples
 
     fun getSamples() {
-        onIO {
-            sampleUseCase.getSamples()
-                .collect { r ->
-                    when (r) {
-                        is Resource.Success -> {
-                            backOnMain {
-                                _samples.value = r.data ?: emptyList()
-                            }
-                        }
-                        is Resource.Error -> Timber.d("${r.resourceError}")
-                        is Resource.Loading -> Timber.d("Loading")
-                    }
+        onMain {
+            sampleUseCase.getSamples().collectResource { samples ->
+                _samples.value = samples
+                onIO {
+                    sampleUseCase.insertSamples(samples)
                 }
+            }
         }
     }
 }

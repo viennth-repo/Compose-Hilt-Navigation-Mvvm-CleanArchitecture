@@ -14,5 +14,5 @@ interface SampleDao {
     fun getSamples(): Flow<List<SampleEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSample(sampleEntities: List<SampleEntity>)
+    suspend fun insertSamples(sampleEntities: List<SampleEntity>)
 }

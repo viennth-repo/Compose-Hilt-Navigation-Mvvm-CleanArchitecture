@@ -5,6 +5,5 @@ import com.viennth.app.demo.domain.model.Sample
 
 
 interface IApiService {
-
     suspend fun getSamples(): Resource<List<Sample>>
 }

@@ -17,7 +17,4 @@ class ApiServiceImpl @Inject constructor(
             dto.toSample()
         }
     }
-
-
-
 }
