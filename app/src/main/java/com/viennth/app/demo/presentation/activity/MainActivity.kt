@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.viennth.app.demo.presentation.location.LocationService
 import com.viennth.app.demo.presentation.ui.screen.maintab.MainTabScreen
 import com.viennth.app.demo.presentation.ui.theme.ComposeAppTheme
 import com.viennth.app.demo.presentation.viewmodel.SampleViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,5 +35,15 @@ class MainActivity : ComponentActivity() {
             }
         }
 //        viewModel.getSamples()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LocationService.moveToBackground(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LocationService.moveToForeground(this)
     }
 }
