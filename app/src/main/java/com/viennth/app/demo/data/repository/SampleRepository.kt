@@ -1,7 +1,6 @@
 package com.viennth.app.demo.data.repository
 
 import com.viennth.app.demo.domain.abstraction.ISampleRepository
-import com.viennth.app.demo.domain.model.Resource
 import com.viennth.app.demo.domain.model.Sample
 import javax.inject.Inject
 

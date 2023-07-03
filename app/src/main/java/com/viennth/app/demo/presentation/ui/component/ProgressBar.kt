@@ -15,7 +15,7 @@ fun CircularIndeterminateProgressBar(isDisplayed: Boolean, verticalBias: Float) 
     if (isDisplayed) {
         ConstraintLayout(
             modifier = Modifier.fillMaxSize()
-//                .background(Color.Black.copy(alpha = 0.5f))
+                .background(Color.Black.copy(alpha = 0.1f))
                 .pointerInput(Unit) {}
         ) {
             val (progressBar) = createRefs()

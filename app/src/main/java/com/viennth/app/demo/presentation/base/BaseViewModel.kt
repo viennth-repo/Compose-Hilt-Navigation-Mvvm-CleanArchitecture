@@ -100,4 +100,15 @@ abstract class BaseViewModel: ViewModel() {
             }
         }
     }
+
+//    fun <T> Resource<T>.asFlow(): Flow<Resource<T>> = flow {
+//        emit(this@asFlow)
+//    }
+
+    fun <T> makeApiCall(
+        apiCall: suspend () -> Resource<T>,
+        onSuccess: (data: T) -> Unit
+    ) = onMain {
+        apiCall().execute().collectResource(onSuccess)
+    }
 }

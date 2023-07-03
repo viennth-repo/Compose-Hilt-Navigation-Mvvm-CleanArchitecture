@@ -2,7 +2,9 @@ package com.viennth.app.demo.presentation.ui.screen.favorite
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animate
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ExperimentalMaterialApi
@@ -17,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -60,7 +63,12 @@ fun FavoriteScreen() {
         }
     }
 
-    Box(Modifier.pullRefresh(::onPull, { onRelease() })) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .pullRefresh(::onPull, { onRelease() })
+    ) {
         LazyColumn {
             if (!refreshing) {
                 items(itemCount) {

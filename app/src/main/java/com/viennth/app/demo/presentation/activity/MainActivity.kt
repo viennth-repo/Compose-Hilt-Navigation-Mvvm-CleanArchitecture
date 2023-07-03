@@ -1,21 +1,21 @@
 package com.viennth.app.demo.presentation.activity
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.viennth.app.demo.presentation.base.BaseActivity
 import com.viennth.app.demo.presentation.location.LocationService
-import com.viennth.app.demo.presentation.ui.screen.maintab.MainTabScreen
+import com.viennth.app.demo.presentation.ui.navigation.AppNavigation
 import com.viennth.app.demo.presentation.ui.theme.ComposeAppTheme
 import com.viennth.app.demo.presentation.viewmodel.SampleViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
 
     private val viewModel by viewModels<SampleViewModel>()
 
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     setContent {
-                        MainTabScreen()
+                        AppNavigation()
                     }
                 }
             }

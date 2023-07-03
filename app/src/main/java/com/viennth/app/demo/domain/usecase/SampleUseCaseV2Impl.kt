@@ -4,7 +4,6 @@ import com.viennth.app.demo.domain.abstraction.ISampleRepository
 import com.viennth.app.demo.domain.model.Resource
 import com.viennth.app.demo.domain.model.Sample
 import com.viennth.app.demo.domain.model.transformData
-import timber.log.Timber
 import javax.inject.Inject
 
 class SampleUseCaseV2Impl @Inject constructor(

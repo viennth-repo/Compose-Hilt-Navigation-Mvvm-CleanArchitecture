@@ -1,5 +1,6 @@
 package com.viennth.app.demo.presentation.ui.screen.maintab
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,28 +15,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.viennth.app.demo.presentation.ui.navigation.AppNavigation
+import com.viennth.app.demo.presentation.ui.navigation.MainTabNavigation
 import com.viennth.app.demo.presentation.ui.navigation.Screen
 import com.viennth.app.demo.presentation.ui.navigation.currentRoute
-import com.viennth.app.demo.presentation.viewmodel.SampleViewModel
-
-@Composable
-fun MainTabScreen() {
-    val navController = rememberNavController()
-
-    Scaffold(bottomBar = { MainBottomBar(navController = navController)},) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            AppNavigation(navController, Modifier.padding(it))
-        }
-    }
-}
+import com.viennth.app.demo.presentation.ui.theme.BottomTabColor
 
 @Composable
 fun MainBottomBar(navController: NavController) {
-    BottomNavigation {
+    BottomNavigation(backgroundColor = BottomTabColor) {
         listOf(
             Screen.BottomNavHome,
             Screen.BottomNavFavorite,

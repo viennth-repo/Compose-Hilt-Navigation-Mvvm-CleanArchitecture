@@ -1,4 +1,6 @@
 package com.viennth.app.demo.presentation.base
 
-class BaseActivity {
+import androidx.activity.ComponentActivity
+
+abstract class BaseActivity : ComponentActivity() {
 }

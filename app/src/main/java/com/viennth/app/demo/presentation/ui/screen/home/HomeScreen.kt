@@ -1,5 +1,6 @@
 package com.viennth.app.demo.presentation.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.viennth.app.demo.presentation.ui.component.CircularIndeterminateProgressBar
 import com.viennth.app.demo.presentation.ui.component.PullRefreshBox
 import com.viennth.app.demo.presentation.viewmodel.SampleViewModel
 
@@ -54,7 +54,12 @@ fun HomeScreen() {
         } else {
             LazyColumn(Modifier.fillMaxSize()) {
                 items(samples) { item ->
-                    ListItem { Text(text = item.name ?: "") }
+                    ListItem(
+                        modifier = Modifier.clickable {
+                        }
+                    ) {
+                        Text(text = item.name ?: "")
+                    }
                 }
             }
 

@@ -1,10 +1,7 @@
 package com.viennth.app.demo.presentation.ui.navigation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -15,29 +12,45 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.viennth.app.demo.R
+import com.viennth.app.demo.presentation.ui.screen.comingsoon.ComingSoonScreen
 import com.viennth.app.demo.presentation.ui.screen.favorite.FavoriteScreen
 import com.viennth.app.demo.presentation.ui.screen.home.HomeScreen
+import com.viennth.app.demo.presentation.ui.screen.login.LoginScreen
+import com.viennth.app.demo.presentation.ui.screen.mainscreen.MainScreen
 import com.viennth.app.demo.presentation.ui.screen.profile.ProfileScreen
 
 
 @Composable
 fun AppNavigation(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier
+    navController: NavHostController = rememberNavController()
 ) {
     NavHost(
         navController = navController,
-        modifier = modifier,
-        startDestination = Route.MainTab.screenName
+        startDestination = Route.LoginScreen.screenName,
+        route = "ROOT"
     ) {
-        composable(route = Route.LoginScreen.screenName) {
+        composable(route = Route.MainTab.screenName) {
+            MainTabNavigation()
         }
-        mainTabGraph(navController)
-        composable(route = Route.DetailsScreen.screenName) {
-
+        composable(route = Route.LoginScreen.screenName) {
+            LoginScreen(navController)
         }
         composable(route = Route.ComingSoonScreen.screenName) {
+            ComingSoonScreen()
+        }
+    }
+}
 
+@Composable
+fun MainTabNavigation(
+    navController: NavHostController = rememberNavController(),
+) {
+    MainScreen(navController = navController) {
+        NavHost(
+            navController = navController,
+            startDestination = Route.MainTab.screenName
+        ) {
+            mainTabGraph(navController)
         }
     }
 }
